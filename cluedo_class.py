@@ -73,7 +73,12 @@ class CluedoGame:
                 hedge.remove(card)
             if len(hedge) == 1:
                 self.board_tracker.at[hedge[0],name] = 1.0
+                #Here I changed it
+                for other in self.all_names:
+                    if other != name:
+                        self.board_tracker.at[hedge[0], other] = 0.0
                 hedge.remove(hedge[0])
+
 
     def my_turn_suggestion(self):
 
