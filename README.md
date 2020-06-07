@@ -34,6 +34,8 @@ If a player is able to help someone else, you know they must have one, two or al
 game.add_options("person",[the_cards])
 ```
 
+For your turn: `game.my_turn_suggestion` will return any options you should guess that will maximise the information you will recieve during your turn. This uses the fact that there will be lots of hedges that can be solved with a single new piece of information - so we try and solve as many hedges as possible per turn.
+
 ## The algorithm.
 `CluedoGame.board_tracker` keeps track of all cards: showing `0` if someone definitely doesn't have that card, `1` if they definitely do have it and `no_info` if there is no definitive information.
 `CluedoGame.hedges` is the key step that will enable quicker learning -  it keeps track of all `add_options` function calls, so that new information can be used to solve earlier doubts.

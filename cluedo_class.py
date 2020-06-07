@@ -1,4 +1,5 @@
 import pandas as pd
+from collections import Counter
 
 class CluedoGame:
 
@@ -74,7 +75,32 @@ class CluedoGame:
 
         if num_unknowns >0 and 1.0 not in priors:
             self.hedges[name].append(unknowns)
-        
+
+    def my_turn_suggestion(self):
+        suggestions = []
+
+        fifty_fifties = []
+        all_hedges = []
+        for hedges in self.hedges.values():
+            all_hedges += hedges
+        for hedges in all_hedges:
+            if len(hedges) == 2:
+                fifty_fifties.append(hedges[0])
+                fifty_fifties.append(hedges[1])
+        options = Counter(fifty_fifties).most_common()
+        if len(options) == 0:
+            return "No suggestions yet"
+
+        for cards in [CluedoGame.rooms, CluedoGame.weapons, CluedoGame.guests]:
+            found = False
+            count = 0
+            while not found and count <len(options):
+                if options[count][0] in cards:
+                    suggestions.append(options[count][0])
+                    found = True
+                else:
+                    count +=1
+        return suggestions
 
     def check_for_certainties(self):
         for card_type in ['room','weapon','guest']:
