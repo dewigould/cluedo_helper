@@ -1,5 +1,5 @@
 # cluedo_helper
-computer-assisted cluedo cheating, motivate by aggressive family games under lock-down.
+computer-assisted cluedo cheating, motivated by aggressive family games under lock-down.
 
 
 ## Set up.
